@@ -26,8 +26,16 @@
 void parse_dir(char *path, FILE *output_file)
 {
     // 1. Check parameters
+    output_file = fopen("fichier","r+");
+    if(output_file==NULL || !path){
+        printf("Erreur");
+    }else{
     // 2. Gor through all entries: if file, write it to the output file; if a dir, call parse dir on it
+
+    
     // 3. Clear all allocated resources
+    }
+
 }
 
 /*!
