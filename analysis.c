@@ -68,7 +68,10 @@ void clear_recipient_list(simple_recipient_t *list)
  */
 simple_recipient_t *add_recipient_to_list(char *recipient_email, simple_recipient_t *list)
 {
-    return NULL;
+    simple_recipient_t *new_recipient=(simple_recipient_t*) malloc (sizeof(simple_recipient_t));
+    *new_recipient->email = recipient_email;
+    new_recipient->next=list;
+    return new_recipient;
 }
 
 /*!
