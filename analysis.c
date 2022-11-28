@@ -51,9 +51,10 @@ void parse_dir(char *path, FILE *output_file)
 void clear_recipient_list(simple_recipient_t *list)
 {
     if (list == NULL){
-        free(list);
+        return list;
     }else if (list->next==NULL){
-        free(list->next);
+        free(list);
+        return list;        
     }else{
         clear_recipient_list(list->next);
     }   
