@@ -35,6 +35,7 @@ void parse_dir(char *path, FILE *output_file)
         if(dir){
             while(entity!=NULL){
                 fprintf(output_file,"%s\n",entity->d_name);
+                entity=readdir(dir);
             }
         }
         closedir(dir);
