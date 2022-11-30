@@ -84,7 +84,11 @@ simple_recipient_t *add_recipient_to_list(char *recipient_email, simple_recipien
 simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
 {
     // 1. Check parameters
+    if (list==NULL|| buffer==NULL){
     // 2. Go through buffer and extract e-mails
+
+    }
+
     // 3. Add each e-mail to list
     // 4. Return list
     return list;
@@ -97,6 +101,7 @@ simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
  */
 void extract_e_mail(char buffer[], char destination[])
 {
+    
 }
 
 // Used to track status in e-mail (for multi lines To, Cc, and Bcc fields)
