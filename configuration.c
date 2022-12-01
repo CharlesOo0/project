@@ -22,6 +22,7 @@
  * @return the pointer to the updated base configuration
  */
 configuration_t *make_configuration(configuration_t *base_configuration, char *argv[], int argc) {
+    
     return base_configuration;
 }
 

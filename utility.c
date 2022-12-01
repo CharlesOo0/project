@@ -19,6 +19,7 @@
  * @return pointer to full_path if operation succeeded, NULL else
  */
 char *concat_path(char *prefix, char *suffix, char *full_path) {
+    strcat(strcpy(full_path,prefix),suffix);
     return full_path;
 }
 
