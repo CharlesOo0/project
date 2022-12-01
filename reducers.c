@@ -19,7 +19,27 @@
  * @return a pointer to the updated beginning of the list
  */
 sender_t *add_source_to_list(sender_t *list, char *source_email) {
-    return NULL;
+    // 1. Check parameters
+    if (list == NULL || source_email == NULL) {
+        return list;
+    }
+    // 2. Check if e-mail already exists in list
+    sender_t *source = find_source_in_list(list, source_email);
+    if (source != NULL) {
+        return list;
+    }
+    // 3. Create new source
+    sender_t *new_source = (sender_t *) malloc(sizeof(sender_t));
+    strcpy(new_source->recipient_address, source_email);
+    new_source->head = NULL;
+    new_source->tail = NULL;
+    new_source->next = list;
+    new_source->prev = NULL;
+    if (list != NULL) {
+        list->prev = new_source;
+    }
+    // 4. Return new list
+    return new_source;
 }
 
 /*!
