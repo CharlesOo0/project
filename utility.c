@@ -29,7 +29,13 @@ char *concat_path(char *prefix, char *suffix, char *full_path) {
  * @return true if directory exists, false else
  */
 bool directory_exists(char *path) {
-    return false;
+    DIR *dir =opendir(path);
+    if(dir){
+        return true;
+    }else{
+        return false;
+    }
+    
 }
 
 /*!
