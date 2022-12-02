@@ -46,8 +46,10 @@ void parse_dir(char *path, FILE *output_file)
         printf("Erreur");
     }
     else
-    { // 2. Go through all entries: if file, write it to the output file; if a dir, call parse dir on it
-        DIR *dir = opendir(".");
+    { 
+        printf("Analyse du dossier\n");
+        // 2. Go through all entries: if file, write it to the output file; if a dir, call parse dir on it
+        DIR *dir = opendir(path);
         struct dirent *entity = readdir(dir); // entity c'est le fichier ou dossier trouvé dans dir
         if (dir)
         {
