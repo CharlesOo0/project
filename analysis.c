@@ -24,10 +24,10 @@ int main()
     FILE *output_file = fopen("texte.txt", "r+");
     char *testpath = "/home/gabflrt/Documents/Dossier";
     parse_dir(testpath, output_file);
-    //CONCLUSION : CA MARCHE MAIS CA CONTINUE PAS DANS SOUS DOSSIER, AJOUTER RECURSIVITE
+    // CONCLUSION : CA MARCHE MAIS CA CONTINUE PAS DANS SOUS DOSSIER, AJOUTER RECURSIVITE
 
-    //Pas trop compris cette fonction mais ya pas l'air d'avoir besoin de récursivité (peut-être un while)
-    //clear_recipient_list();
+    // Pas trop compris cette fonction
+    // clear_recipient_list();
 }
 
 /*!
@@ -46,7 +46,7 @@ void parse_dir(char *path, FILE *output_file)
         printf("Erreur");
     }
     else
-    { 
+    {
         printf("Analyse du dossier\n");
         // 2. Go through all entries: if file, write it to the output file; if a dir, call parse dir on it
         DIR *dir = opendir(path);
