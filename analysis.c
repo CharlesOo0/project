@@ -22,8 +22,12 @@ int main()
 {
     // Tester avec dossier et vérifier que renvoi tous les sous dossiers ainsi que tout les fichiers dans texte.txt
     FILE *output_file = fopen("texte.txt", "r+");
-    char *testpath = "Documents/Dossier";
+    char *testpath = "/home/gabflrt/Documents/Dossier";
     parse_dir(testpath, output_file);
+    //CONCLUSION : CA MARCHE MAIS CA CONTINUE PAS DANS SOUS DOSSIER, AJOUTER RECURSIVITE
+
+    //Pas trop compris cette fonction mais ya pas l'air d'avoir besoin de récursivité (peut-être un while)
+    //clear_recipient_list();
 }
 
 /*!
