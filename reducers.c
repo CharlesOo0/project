@@ -6,6 +6,7 @@
 
 #include <dirent.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -16,7 +17,10 @@ int main()
 {
     char *testmail = "test@gmail.com";
     sender_t *testlist = NULL;
+    testlist = add_source_to_list(testlist, testmail);
+    printf("%s", testlist->recipient_address);
     add_source_to_list(testlist, testmail);
+    // CONCLUSION : fonction qui marche, comprendre utilité de head et tail car pour le moment nul
 }
 
 /*!
@@ -28,15 +32,21 @@ int main()
 sender_t *add_source_to_list(sender_t *list, char *source_email)
 {
     // 1. Check parameters
-    if (list == NULL || source_email == NULL)
+    if (source_email == NULL)
     {
         return list;
     }
+
     // 2. Check if e-mail already exists in list
     sender_t *source = find_source_in_list(list, source_email);
     if (source != NULL)
     {
+        printf("email existe déjà");
         return list;
+    }
+    else
+    {
+        printf("nouvel email");
     }
     // 3. Create new source
     sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
