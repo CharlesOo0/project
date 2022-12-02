@@ -17,6 +17,15 @@
 
 #include "utility.h"
 
+// Fonction main pour tester les différentes fonctions avant l'assemblage
+int main()
+{
+    // Tester avec dossier et vérifier que renvoi tous les sous dossiers ainsi que tout les fichiers dans texte.txt
+    FILE *output_file = fopen("texte.txt", "r+");
+    char *testpath = "Documents/Dossier";
+    parse_dir(testpath, output_file);
+}
+
 /*!
  * @brief parse_dir parses a directory to find all files in it and its subdirs (recursive analysis of root directory)
  * All files must be output with their full path into the output file.
@@ -26,23 +35,28 @@
 void parse_dir(char *path, FILE *output_file)
 {
     // 1. Check parameters
-    output_file = fopen("fichier","r+");
-    if(output_file==NULL || !path){
+    // directory_exists(path);
+
+    if (output_file == NULL || !path)
+    {
         printf("Erreur");
-    }else{// 2. Go through all entries: if file, write it to the output file; if a dir, call parse dir on it
-        DIR *dir=opendir(".");
-        struct dirent *entity=readdir(dir); //entity c'est le fichier ou dossier trouvé dans dir
-        if(dir){
-            while(entity!=NULL){
-                fprintf(output_file,"%s\n",entity->d_name);
-                entity=readdir(dir);
+    }
+    else
+    { // 2. Go through all entries: if file, write it to the output file; if a dir, call parse dir on it
+        DIR *dir = opendir(".");
+        struct dirent *entity = readdir(dir); // entity c'est le fichier ou dossier trouvé dans dir
+        if (dir)
+        {
+            while (entity != NULL)
+            {
+                fprintf(output_file, "%s\n", entity->d_name);
+                entity = readdir(dir);
             }
         }
         closedir(dir);
-    
-    // 3. Clear all allocated resources
-    }
 
+        // 3. Clear all allocated resources
+    }
 }
 
 /*!
@@ -51,14 +65,19 @@ void parse_dir(char *path, FILE *output_file)
  */
 void clear_recipient_list(simple_recipient_t *list)
 {
-    if (list == NULL){
-        return list;
-    }else if (list->next==NULL){
+    if (list == NULL)
+    {
+        // return list;
+    }
+    else if (list->next == NULL)
+    {
         free(list);
-        return list;        
-    }else{
+        // return list;
+    }
+    else
+    {
         clear_recipient_list(list->next);
-    }   
+    }
 }
 
 /*!
@@ -69,9 +88,9 @@ void clear_recipient_list(simple_recipient_t *list)
  */
 simple_recipient_t *add_recipient_to_list(char *recipient_email, simple_recipient_t *list)
 {
-    simple_recipient_t *new_recipient=(simple_recipient_t*) malloc (sizeof(simple_recipient_t));
-    *new_recipient->email = recipient_email;
-    new_recipient->next=list;
+    simple_recipient_t *new_recipient = (simple_recipient_t *)malloc(sizeof(simple_recipient_t));
+    *new_recipient->email = *recipient_email;
+    *new_recipient->next = *list;
     return new_recipient;
 }
 
@@ -84,9 +103,9 @@ simple_recipient_t *add_recipient_to_list(char *recipient_email, simple_recipien
 simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
 {
     // 1. Check parameters
-    if (list==NULL|| buffer==NULL){
-    // 2. Go through buffer and extract e-mails
-
+    if (list == NULL || buffer == NULL)
+    {
+        // 2. Go through buffer and extract e-mails
     }
 
     // 3. Add each e-mail to list
@@ -101,7 +120,6 @@ simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
  */
 void extract_e_mail(char buffer[], char destination[])
 {
-    
 }
 
 // Used to track status in e-mail (for multi lines To, Cc, and Bcc fields)
