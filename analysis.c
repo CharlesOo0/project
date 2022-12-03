@@ -20,14 +20,31 @@
 // Fonction main pour tester les différentes fonctions avant l'assemblage
 int main()
 {
-    // Tester avec dossier et vérifier que renvoi tous les sous dossiers ainsi que tout les fichiers dans texte.txt
+    // TEST : parse_dir
     FILE *output_file = fopen("texte.txt", "r+");
     char *testpath = "/home/gabflrt/Documents/Dossier";
     parse_dir(testpath, output_file);
     // CONCLUSION : CA MARCHE MAIS CA CONTINUE PAS DANS SOUS DOSSIER, AJOUTER RECURSIVITE
 
-    // Pas trop compris cette fonction
-    // clear_recipient_list();
+    // TEST : add_recipient_to_list
+    char *testmail = "test@gmail.com";
+    simple_recipient_t *testrecipient = NULL;
+    testrecipient = add_recipient_to_list(testmail, testrecipient);
+    testmail = "test2@gmail.com";
+    testrecipient = add_recipient_to_list(testmail, testrecipient);
+    testmail = "test3@gmail.com";
+    testrecipient = add_recipient_to_list(testmail, testrecipient);
+    testmail = "test4@gmail.com";
+    testrecipient = add_recipient_to_list(testmail, testrecipient);
+    while (testrecipient != NULL)
+    {
+        printf("%s\n", testrecipient->email);
+        testrecipient = testrecipient->next;
+    }
+    // CONCLUSION : marche
+
+    //  TEST : clear_recipient_list
+    //  clear_recipient_list();
 }
 
 /*!
@@ -96,10 +113,17 @@ void clear_recipient_list(simple_recipient_t *list)
  */
 simple_recipient_t *add_recipient_to_list(char *recipient_email, simple_recipient_t *list)
 {
-    simple_recipient_t *new_recipient = (simple_recipient_t *)malloc(sizeof(simple_recipient_t));
-    *new_recipient->email = *recipient_email;
-    *new_recipient->next = *list;
-    return new_recipient;
+    if (recipient_email == NULL)
+    {
+        return list;
+    }
+    else
+    {
+        simple_recipient_t *new_recipient = (simple_recipient_t *)malloc(sizeof(simple_recipient_t));
+        strcpy(new_recipient->email, recipient_email);
+        new_recipient->next = list;
+        return new_recipient;
+    }
 }
 
 /*!
