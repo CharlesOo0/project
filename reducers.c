@@ -45,7 +45,7 @@ int main()
         printf("%s\n", testlist->recipient_address);
         testlist = testlist->next;
     }*/
-    // CONCLUSION : ça à l'air de bien marcher
+    // CONCLUSION : marche
 
     // TEST : find_source_in_list
     testmail = "test@gmail.com";

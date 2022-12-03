@@ -73,16 +73,18 @@ void clear_recipient_list(simple_recipient_t *list)
 {
     if (list == NULL)
     {
-        // return list;
     }
     else if (list->next == NULL)
     {
         free(list);
-        // return list;
     }
     else
     {
-        clear_recipient_list(list->next);
+        if (list->next != NULL)
+        {
+            clear_recipient_list(list->next);
+            free(list);
+        }
     }
 }
 
