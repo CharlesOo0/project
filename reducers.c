@@ -13,6 +13,7 @@
 #include "global_defs.h"
 #include "utility.h"
 
+// POUR TESTER LES FONCTIONS
 int main()
 {
     // TEST : add_source_to_list
@@ -25,22 +26,32 @@ int main()
     testlist = add_source_to_list(testlist, testmail);
     testmail = "test4@gmail.com";
     testlist = add_source_to_list(testlist, testmail);
-
+    testmail = "test4@gmail.com";
+    testlist = add_source_to_list(testlist, testmail);
+    /*
     while (testlist != NULL)
     {
         printf("%s\n", testlist->recipient_address);
         testlist = testlist->next;
     }
+    */
     // CONCLUSION : fonction qui marche, comprendre utilité de head et tail car pour le moment null
 
     // Test : clear_sources_list
+    /*
     clear_sources_list(testlist);
     while (testlist != NULL)
     {
         printf("%s\n", testlist->recipient_address);
         testlist = testlist->next;
-    }
+    }*/
     // CONCLUSION : ça à l'air de bien marcher
+
+    // TEST : find_source_in_list
+    testmail = "test@gmail.com";
+    testlist = find_source_in_list(testlist, testmail);
+    printf("%s\n", testlist->recipient_address);
+    // CONCLUSION : marche
 }
 
 /*!
@@ -61,7 +72,7 @@ sender_t *add_source_to_list(sender_t *list, char *source_email)
     sender_t *source = find_source_in_list(list, source_email);
     if (source != NULL)
     {
-        // printf("email existe déjà");
+        // printf("email existe deja");
         return list;
     }
     else
@@ -114,7 +125,28 @@ void clear_sources_list(sender_t *list)
  */
 sender_t *find_source_in_list(sender_t *list, char *source_email)
 {
-    return NULL;
+    sender_t *templist = list;
+    bool found = 0;
+    while (templist != NULL && found != 1)
+    {
+        if (!strcmp(templist->recipient_address, source_email))
+        {
+            found = 1;
+        }
+        else
+        {
+
+            templist = templist->next;
+        }
+    }
+    if (found == 1)
+    {
+        return templist;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 /*!
