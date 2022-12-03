@@ -36,15 +36,23 @@ int main()
     testrecipient = add_recipient_to_list(testmail, testrecipient);
     testmail = "test4@gmail.com";
     testrecipient = add_recipient_to_list(testmail, testrecipient);
+    /*
     while (testrecipient != NULL)
     {
         printf("%s\n", testrecipient->email);
         testrecipient = testrecipient->next;
     }
+    */
     // CONCLUSION : marche
 
     //  TEST : clear_recipient_list
-    //  clear_recipient_list();
+    clear_recipient_list(testrecipient);
+    while (testrecipient != NULL)
+    {
+        printf("%s\n", testrecipient->email);
+        testrecipient = testrecipient->next;
+    }
+    // CONCLUSION : les free marchent pas, jsp pourquoi
 }
 
 /*!
@@ -93,15 +101,16 @@ void clear_recipient_list(simple_recipient_t *list)
     }
     else if (list->next == NULL)
     {
+        printf("dernier : %s\n", list->email);
         free(list);
+        printf("dernier : %s\n", list->email);
     }
     else
     {
-        if (list->next != NULL)
-        {
-            clear_recipient_list(list->next);
-            free(list);
-        }
+        clear_recipient_list(list->next);
+        printf("autres : %s\n", list->email);
+        free(list);
+        printf("autres : %s\n", list->email);
     }
 }
 
