@@ -15,12 +15,32 @@
 
 int main()
 {
+    // TEST : add_source_to_list
     char *testmail = "test@gmail.com";
     sender_t *testlist = NULL;
     testlist = add_source_to_list(testlist, testmail);
-    printf("%s", testlist->recipient_address);
-    add_source_to_list(testlist, testmail);
-    // CONCLUSION : fonction qui marche, comprendre utilité de head et tail car pour le moment nul
+    testmail = "test2@gmail.com";
+    testlist = add_source_to_list(testlist, testmail);
+    testmail = "test3@gmail.com";
+    testlist = add_source_to_list(testlist, testmail);
+    testmail = "test4@gmail.com";
+    testlist = add_source_to_list(testlist, testmail);
+
+    while (testlist != NULL)
+    {
+        printf("%s\n", testlist->recipient_address);
+        testlist = testlist->next;
+    }
+    // CONCLUSION : fonction qui marche, comprendre utilité de head et tail car pour le moment null
+
+    // Test : clear_sources_list
+    clear_sources_list(testlist);
+    while (testlist != NULL)
+    {
+        printf("%s\n", testlist->recipient_address);
+        testlist = testlist->next;
+    }
+    // CONCLUSION : ça à l'air de bien marcher
 }
 
 /*!
@@ -41,12 +61,12 @@ sender_t *add_source_to_list(sender_t *list, char *source_email)
     sender_t *source = find_source_in_list(list, source_email);
     if (source != NULL)
     {
-        printf("email existe déjà");
+        // printf("email existe déjà");
         return list;
     }
     else
     {
-        printf("nouvel email");
+        // printf("nouvel email");
     }
     // 3. Create new source
     sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
@@ -69,6 +89,21 @@ sender_t *add_source_to_list(sender_t *list, char *source_email)
  */
 void clear_sources_list(sender_t *list)
 {
+    if (list == NULL)
+    {
+    }
+    else if (list->next == NULL)
+    {
+        free(list);
+    }
+    else
+    {
+        if (list->next != NULL)
+        {
+            clear_sources_list(list->next);
+            free(list);
+        }
+    }
 }
 
 /*!
