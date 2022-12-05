@@ -190,22 +190,24 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
     if (source != NULL)
     {
         // printf("email existe deja");
-        return source;
+        source->occurrences = source->occurrences + 1;
     }
     else
     {
         // printf("nouvel email");
     }
+    
     // 3. Create new source
-    sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
+    recipient_t *new_source = (recipient_t *)malloc(sizeof(recipient_t));
     strcpy(new_source->recipient_address, recipient_email);
-    new_source->head = NULL;
-    new_source->tail = NULL;
+    /*new_source->head = NULL;
+    new_source->tail = NULL;*/
     new_source->next = source;
     new_source->prev = NULL;
     if (source != NULL)
     {
-        source->prev = new_source + 1;
+        source->prev = new_source;
+        source->occurrences = source->occurrences + 1;
     }
 }
 
