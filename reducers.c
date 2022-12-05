@@ -72,6 +72,7 @@ int main()
         testlist = testlist->next;
     }
     */
+    // CONCLUSION :
 }
 
 /*!
@@ -92,26 +93,26 @@ sender_t *add_source_to_list(sender_t *list, char *source_email)
     sender_t *source = find_source_in_list(list, source_email);
     if (source != NULL)
     {
-        // printf("email existe deja");
+        // L'email existe deja
         return list;
     }
     else
     {
-        // printf("nouvel email");
+        // Nouvel email
+        // 3. Create new source
+        sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
+        strcpy(new_source->recipient_address, source_email);
+        new_source->head = NULL;
+        new_source->tail = NULL;
+        new_source->next = list;
+        new_source->prev = NULL;
+        if (list != NULL)
+        {
+            list->prev = new_source;
+        }
+        // 4. Return new list
+        return new_source;
     }
-    // 3. Create new source
-    sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
-    strcpy(new_source->recipient_address, source_email);
-    new_source->head = NULL;
-    new_source->tail = NULL;
-    new_source->next = list;
-    new_source->prev = NULL;
-    if (list != NULL)
-    {
-        list->prev = new_source;
-    }
-    // 4. Return new list
-    return new_source;
 }
 
 /*!
