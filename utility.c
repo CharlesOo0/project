@@ -5,11 +5,21 @@
 #include "utility.h"
 
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <dirent.h>
 #include <libgen.h>
 #include <unistd.h>
 
 #include "global_defs.h"
+
+int main(){
+
+    char *path ="projet/analisys";
+    char *prefix="bon",*suffix="jour";
+    char *mot=concat_path(prefix,suffix,mot);
+    printf("%s",mot);
+}
 
 /*!
  * @brief cat_path concatenates two file system paths into a result. It adds the separation /  if required.
@@ -19,6 +29,7 @@
  * @return pointer to full_path if operation succeeded, NULL else
  */
 char *concat_path(char *prefix, char *suffix, char *full_path) {
+    
     strcat(strcpy(full_path,prefix),suffix);
     return full_path;
 }
@@ -46,13 +57,27 @@ bool directory_exists(char *path) {
  * @return true if path to file exists, false else
  */
 bool path_to_file_exists(char *path) {
-
-    char part_path[100];
-    int i=0;
-    while(path!=NULL){
-    part_path[i]=strtok(path,"/");
+      int separators_count = 0;
+    for (int i=0; i<strlen(path); ++i){
+		if (path[i] == '/'){
+			++separators_count;
+        }
     }
-    return directory_exists(path);
+
+    char **fields = malloc(sizeof(char) * (separators_count+1));
+    char sep='/';
+	char sep_path[2];
+	sep_path[0] = sep ; sep_path[1] = '\0';
+    char *path_field = strtok(path, sep_path);
+    int i=0;
+
+    while(path_field){
+        fields[i] = malloc(sizeof(char) * strlen(path_field));
+        path_field=strtok(NULL,sep_path);
+    }
+    printf("%s",fields);
+    // utiliser la fonction concat path pour transformer fields en une chaine de caractère
+    //return directory_exists();
     
 }
 
