@@ -186,7 +186,7 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
     }
 
     // 2. Check if e-mail already exists in list
-    sender_t *source = find_source_in_list(source, recipient_email);
+    recipient_t *source = find_source_in_list(source, recipient_email);
     if (source != NULL)
     {
         // printf("email existe deja");
