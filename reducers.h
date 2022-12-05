@@ -25,7 +25,7 @@ typedef struct _sender {
 sender_t *add_source_to_list(sender_t *list, char *source_email);
 void clear_sources_list(sender_t *list);
 sender_t *find_source_in_list(sender_t *list, char *source_email);
-void add_recipient_to_source(sender_t *source, char *recipient_email);
+void add_recipient_to_source(recipient_t *source, char *recipient_email);
 
 void files_list_reducer(char *data_source, char *temp_files, char *output_file);
 void files_reducer(char *temp_file, char *output_file);

@@ -156,8 +156,37 @@ sender_t *find_source_in_list(sender_t *list, char *source_email)
  * @param source a pointer to the source to add/update the recipient to
  * @param recipient_email the recipient e-mail to add/update as a string
  */
-void add_recipient_to_source(sender_t *source, char *recipient_email)
+void add_recipient_to_source(recipient_t *source, char *recipient_email)
 {
+    // 1. Check parameters
+    if (recipient_email == NULL)
+    {
+        return 0;
+    }
+
+    // 2. Check if e-mail already exists in list
+    sender_t *source = find_source_in_list(source, recipient_email);
+    if (source != NULL)
+    {
+        // printf("email existe deja");
+        return source;
+    }
+    else
+    {
+        // printf("nouvel email");
+    }
+    // 3. Create new source
+    sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
+    strcpy(new_source->recipient_address, recipient_email);
+    new_source->head = NULL;
+    new_source->tail = NULL;
+    new_source->next = source;
+    new_source->prev = NULL;
+    if (source != NULL)
+    {
+        source->prev = new_source + 1;
+    }
+
 }
 
 /*!
@@ -169,6 +198,7 @@ void add_recipient_to_source(sender_t *source, char *recipient_email)
  */
 void files_list_reducer(char *data_source, char *temp_files, char *output_file)
 {
+
 }
 
 /*!
