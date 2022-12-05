@@ -207,7 +207,6 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
     {
         source->prev = new_source + 1;
     }
-
 }
 
 /*!
@@ -219,7 +218,8 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
  */
 void files_list_reducer(char *data_source, char *temp_files, char *output_file)
 {
-
+    strcat(strcpy(output_file, data_source), temp_files);
+    return output_file;
 }
 
 /*!
