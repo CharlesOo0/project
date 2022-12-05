@@ -56,15 +56,15 @@ int main()
     // TEST : add_recipient_to_source
     char *testmail2 = "test@gmail.com";
     sender_t *testlist2 = NULL;
-    testlist2 = add_recipient_to_source(testlist2, testmail2);
+    add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test2@gmail.com";
-    testlist2 = add_recipient_to_source(testlist2, testmail2);
+    add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test3@gmail.com";
-    testlist2 = add_recipient_to_source(testlist2, testmail2);
+    add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test4@gmail.com";
-    testlist2 = add_recipient_to_source(testlist2, testmail2);
+    add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test4@gmail.com";
-    testlist2 = add_recipient_to_source(testlist2, testmail2);
+    add_recipient_to_source(testlist2, testmail2);
     /*
     while (testlist != NULL)
     {
