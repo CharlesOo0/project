@@ -52,6 +52,27 @@ int main()
     testlist = find_source_in_list(testlist, testmail);
     printf("%s\n", testlist->recipient_address);
     // CONCLUSION : marche
+
+    // TEST : add_recipient_to_source
+    char *testmail2 = "test@gmail.com";
+    sender_t *testlist2 = NULL;
+    add_recipient_to_source(testlist2, testmail2);
+    testmail2 = "test2@gmail.com";
+    add_recipient_to_source(testlist2, testmail2);
+    testmail2 = "test3@gmail.com";
+    add_recipient_to_source(testlist2, testmail2);
+    testmail2 = "test4@gmail.com";
+    add_recipient_to_source(testlist2, testmail2);
+    testmail2 = "test4@gmail.com";
+    add_recipient_to_source(testlist2, testmail2);
+    /*
+    while (testlist != NULL)
+    {
+        printf("%s\n", testlist->recipient_address);
+        testlist = testlist->next;
+    }
+    */
+    // CONCLUSION :
 }
 
 /*!
@@ -72,26 +93,26 @@ sender_t *add_source_to_list(sender_t *list, char *source_email)
     sender_t *source = find_source_in_list(list, source_email);
     if (source != NULL)
     {
-        // printf("email existe deja");
+        // L'email existe deja
         return list;
     }
     else
     {
-        // printf("nouvel email");
+        // Nouvel email
+        // 3. Create new source
+        sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
+        strcpy(new_source->recipient_address, source_email);
+        new_source->head = NULL;
+        new_source->tail = NULL;
+        new_source->next = list;
+        new_source->prev = NULL;
+        if (list != NULL)
+        {
+            list->prev = new_source;
+        }
+        // 4. Return new list
+        return new_source;
     }
-    // 3. Create new source
-    sender_t *new_source = (sender_t *)malloc(sizeof(sender_t));
-    strcpy(new_source->recipient_address, source_email);
-    new_source->head = NULL;
-    new_source->tail = NULL;
-    new_source->next = list;
-    new_source->prev = NULL;
-    if (list != NULL)
-    {
-        list->prev = new_source;
-    }
-    // 4. Return new list
-    return new_source;
 }
 
 /*!
@@ -156,8 +177,38 @@ sender_t *find_source_in_list(sender_t *list, char *source_email)
  * @param source a pointer to the source to add/update the recipient to
  * @param recipient_email the recipient e-mail to add/update as a string
  */
-void add_recipient_to_source(sender_t *source, char *recipient_email)
+void add_recipient_to_source(recipient_t *source, char *recipient_email)
 {
+    // 1. Check parameters
+    if (recipient_email == NULL)
+    {
+        return 0;
+    }
+
+    // 2. Check if e-mail already exists in list
+    recipient_t *source = find_source_in_list(source, recipient_email);
+    if (source != NULL)
+    {
+        // printf("email existe deja");
+        source->occurrences = source->occurrences + 1;
+    }
+    else
+    {
+        // printf("nouvel email");
+    }
+    
+    // 3. Create new source
+    recipient_t *new_source = (recipient_t *)malloc(sizeof(recipient_t));
+    strcpy(new_source->recipient_address, recipient_email);
+    /*new_source->head = NULL;
+    new_source->tail = NULL;*/
+    new_source->next = source;
+    new_source->prev = NULL;
+    if (source != NULL)
+    {
+        source->prev = new_source;
+        source->occurrences = source->occurrences + 1;
+    }
 }
 
 /*!
@@ -169,6 +220,8 @@ void add_recipient_to_source(sender_t *source, char *recipient_email)
  */
 void files_list_reducer(char *data_source, char *temp_files, char *output_file)
 {
+    strcat(strcpy(output_file, data_source), temp_files);
+    return output_file;
 }
 
 /*!

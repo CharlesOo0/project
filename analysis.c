@@ -146,9 +146,10 @@ simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
     // 1. Check parameters
     if (list == NULL || buffer == NULL)
     {
-        // 2. Go through buffer and extract e-mails
+        return list;
     }
 
+    // 2. Go through buffer and extract e-mails
     // 3. Add each e-mail to list
     // 4. Return list
     return list;
