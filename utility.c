@@ -46,7 +46,14 @@ bool directory_exists(char *path) {
  * @return true if path to file exists, false else
  */
 bool path_to_file_exists(char *path) {
-    return false;
+
+    char part_path[100];
+    int i=0;
+    while(path!=NULL){
+    part_path[i]=strtok(path,"/");
+    }
+    return directory_exists(path);
+    
 }
 
 /*!
