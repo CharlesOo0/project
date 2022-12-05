@@ -233,4 +233,22 @@ void files_list_reducer(char *data_source, char *temp_files, char *output_file)
  */
 void files_reducer(char *temp_file, char *output_file)
 {
+    // 1. Open temp file
+    FILE *temp = fopen(temp_file, "r");
+    if (temp == NULL)
+    {
+        printf("Error opening file %s", temp_file);
+        return;
+    }
+
+    // 2. Open output file
+    FILE *output = fopen(output_file, "w");
+    if (output == NULL)
+    {
+        printf("Error opening file %s", output_file);
+        return;
+    }
+
+    // 3. Read temp file and write to output file (i guess, not sure)
+
 }
