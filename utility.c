@@ -12,13 +12,25 @@
 #include <unistd.h>
 
 #include "global_defs.h"
+#include "reducers.h"
+
+
 
 int main(){
+    
+    char path[1024]=".git/hooks/update.sample";
+    char *prefix="bon";
+    char *suffix="jour";
+    char *mot=NULL;
+   /*   
+    mot=concat_path(prefix,suffix,mot);
+    printf("Mot : %s\n",mot);
+    */
+    printf("%s",dirname(path));
 
-    char *path ="projet/analisys";
-    char *prefix="bon",*suffix="jour";
-    char *mot=concat_path(prefix,suffix,mot);
-    printf("%s",mot);
+   bool dir_exist = path_to_file_exists(NULL);
+
+    
 }
 
 /*!
@@ -29,7 +41,7 @@ int main(){
  * @return pointer to full_path if operation succeeded, NULL else
  */
 char *concat_path(char *prefix, char *suffix, char *full_path) {
-    
+    full_path=(char *)malloc(sizeof(char));
     strcat(strcpy(full_path,prefix),suffix);
     return full_path;
 }
@@ -57,28 +69,12 @@ bool directory_exists(char *path) {
  * @return true if path to file exists, false else
  */
 bool path_to_file_exists(char *path) {
-      int separators_count = 0;
-    for (int i=0; i<strlen(path); ++i){
-		if (path[i] == '/'){
-			++separators_count;
-        }
+    if(path==NULL){
+        printf("Erreur : path=NULL");
+        return false;
+    }else{
+            return directory_exists(dirname(path));//dirname renvoi le chemin sans le nom
     }
-
-    char **fields = malloc(sizeof(char) * (separators_count+1));
-    char sep='/';
-	char sep_path[2];
-	sep_path[0] = sep ; sep_path[1] = '\0';
-    char *path_field = strtok(path, sep_path);
-    int i=0;
-
-    while(path_field){
-        fields[i] = malloc(sizeof(char) * strlen(path_field));
-        path_field=strtok(NULL,sep_path);
-    }
-    printf("%s",fields);
-    // utiliser la fonction concat path pour transformer fields en une chaine de caractère
-    //return directory_exists();
-    
 }
 
 /*!
