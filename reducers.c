@@ -54,6 +54,7 @@ int main()
     // CONCLUSION : marche
 
     // TEST : add_recipient_to_source
+    /*
     char *testmail2 = "test@gmail.com";
     sender_t *testlist2 = NULL;
     add_recipient_to_source(testlist2, testmail2);
@@ -65,6 +66,8 @@ int main()
     add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test4@gmail.com";
     add_recipient_to_source(testlist2, testmail2);
+    */
+
     /*
     while (testlist != NULL)
     {
@@ -72,6 +75,16 @@ int main()
         testlist = testlist->next;
     }
     */
+    // CONCLUSION :
+
+    // TEST : files_list_reducer
+    /*
+    char *prefixe = "test@gmail.com";
+    char *suffixe = "test";
+    char *total = NULL;
+    total = files_list_reducer(prefixe, suffixe, total);
+    printf("%s", total);
+*/
     // CONCLUSION :
 }
 
@@ -182,7 +195,6 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
     // 1. Check parameters
     if (recipient_email == NULL)
     {
-        return 0;
     }
 
     // 2. Check if e-mail already exists in list
@@ -196,7 +208,7 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
     {
         // printf("nouvel email");
     }
-    
+
     // 3. Create new source
     recipient_t *new_source = (recipient_t *)malloc(sizeof(recipient_t));
     strcpy(new_source->recipient_address, recipient_email);
@@ -221,7 +233,6 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
 void files_list_reducer(char *data_source, char *temp_files, char *output_file)
 {
     strcat(strcpy(output_file, data_source), temp_files);
-    return output_file;
 }
 
 /*!
@@ -250,5 +261,4 @@ void files_reducer(char *temp_file, char *output_file)
     }
 
     // 3. Read temp file and write to output file (i guess, not sure)
-
 }
