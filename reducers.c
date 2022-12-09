@@ -78,13 +78,13 @@ int main()
     // CONCLUSION :
 
     // TEST : files_list_reducer
-    /*
+
     char *prefixe = "test@gmail.com";
     char *suffixe = "test";
-    char *total = NULL;
-    total = files_list_reducer(prefixe, suffixe, total);
+    char total[1024];
+    files_list_reducer(prefixe, suffixe, total);
     printf("%s", total);
-*/
+
     // CONCLUSION :
 }
 
@@ -198,7 +198,7 @@ void add_recipient_to_source(recipient_t *source, char *recipient_email)
     }
 
     // 2. Check if e-mail already exists in list
-    recipient_t *source = find_source_in_list(source, recipient_email);
+    // recipient_t *source = find_source_in_list(source, recipient_email);
     if (source != NULL)
     {
         // printf("email existe deja");
