@@ -257,4 +257,5 @@ void files_reducer(char *temp_file, char *output_file)
     }
 
     // 3. Read temp file and write to output file (i guess, not sure)
+    // Je vois pas à quel moment faut utiliser la liste chainée
 }
