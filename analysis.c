@@ -20,10 +20,12 @@
 // Fonction main pour tester les différentes fonctions avant l'assemblage
 int main()
 {
-    // TEST : parse_dir
+    // TEST : parse_dir (à compiler uniquement sur LINUX)
+    /*
     FILE *output_file = fopen("texte.txt", "r+");
     char *testpath = "/home/gabflrt/Documents/Dossier";
     parse_dir(testpath, output_file);
+    */
     // CONCLUSION : CA MARCHE MAIS CA CONTINUE PAS DANS SOUS DOSSIER, AJOUTER RECURSIVITE
 
     // TEST : add_recipient_to_list
@@ -47,6 +49,7 @@ int main()
 
     //  TEST : clear_recipient_list
     clear_recipient_list(testrecipient);
+    printf("test: %d\n", testrecipient);
     while (testrecipient != NULL)
     {
         printf("%s\n", testrecipient->email);
@@ -98,19 +101,25 @@ void clear_recipient_list(simple_recipient_t *list)
 {
     if (list == NULL)
     {
+        printf("La liste est bien vide\n");
     }
+    /*
     else if (list->next == NULL)
     {
         printf("dernier : %s\n", list->email);
         free(list);
+        list = NULL;
         printf("dernier : %s\n", list->email);
     }
+    */
     else
     {
         clear_recipient_list(list->next);
         printf("autres : %s\n", list->email);
         free(list);
+        list = NULL;
         printf("autres : %s\n", list->email);
+        printf("test: %d\n", list);
     }
 }
 
