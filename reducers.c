@@ -48,15 +48,16 @@ int main()
     // CONCLUSION : marche
 
     // TEST : find_source_in_list
+    /*
     testmail = "test@gmail.com";
     testlist = find_source_in_list(testlist, testmail);
     printf("%s\n", testlist->recipient_address);
+    */
     // CONCLUSION : marche
 
     // TEST : add_recipient_to_source
-    /*
     char *testmail2 = "test@gmail.com";
-    sender_t *testlist2 = NULL;
+    recipient_t *testlist2 = NULL;
     add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test2@gmail.com";
     add_recipient_to_source(testlist2, testmail2);
@@ -66,26 +67,21 @@ int main()
     add_recipient_to_source(testlist2, testmail2);
     testmail2 = "test4@gmail.com";
     add_recipient_to_source(testlist2, testmail2);
-    */
 
-    /*
     while (testlist != NULL)
     {
         printf("%s\n", testlist->recipient_address);
         testlist = testlist->next;
     }
-    */
     // CONCLUSION :
 
     // TEST : files_list_reducer
-
     char *prefixe = "test@gmail.com";
     char *suffixe = "test";
     char total[1024];
     files_list_reducer(prefixe, suffixe, total);
     printf("%s", total);
-
-    // CONCLUSION :
+    // CONCLUSION : ca marche
 }
 
 /*!
