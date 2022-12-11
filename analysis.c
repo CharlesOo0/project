@@ -67,8 +67,7 @@ int main()
 void parse_dir(char *path, FILE *output_file)
 {
     // 1. Check parameters
-    if (output_file == NULL || !directory_exists(path))
-    {
+    if (output_file == NULL || !directory_exists(path)){
         printf("Erreur\n");
     }
     else
@@ -160,7 +159,7 @@ simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
     //le while permet de tester si le buffer est vide
     while(buffer!=NULL){
         i_email=0;
-        while (buffer[i_buffer]!=" "){
+        while (buffer[i_buffer]!=""){
             email[i_email]=buffer[i_buffer];
             i_buffer++;
             i_email++;        
@@ -184,6 +183,17 @@ simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
  */
 void extract_e_mail(char buffer[], char destination[])
 {
+    if(buffer==NULL){
+        printf("Le buffer est vide");
+    }else{
+        int i_buffer=0;
+        int i_email=0;
+        while (buffer[i_buffer]!=" "){
+            destination[i_email]=buffer[i_buffer];
+            i_buffer++;
+            i_email++;        
+        }        
+    }
 }
 
 // Used to track status in e-mail (for multi lines To, Cc, and Bcc fields)
@@ -204,8 +214,12 @@ typedef enum
 void parse_file(char *filepath, char *output)
 {
     // 1. Check parameters
+    path_to_file_exists(output);
     // 2. Go through e-mail and extract From: address into a buffer
     // 3. Extract recipients (To, Cc, Bcc fields) and put it to a recipients list.
+    
+    //extract_emails(filepath,)
+
     // 4. Lock output file
     // 5. Write to output file according to project instructions
     // 6. Unlock file
