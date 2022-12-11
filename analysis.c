@@ -154,14 +154,26 @@ simple_recipient_t *add_recipient_to_list(char *recipient_email, simple_recipien
 simple_recipient_t *extract_emails(char *buffer, simple_recipient_t *list)
 {
     // 1. Check parameters
-    if (list == NULL || buffer == NULL)
-    {
-        return list;
+    int i_buffer=0;
+    char email[100];
+    int i_email=0;
+    //le while permet de tester si le buffer est vide
+    while(buffer!=NULL){
+        i_email=0;
+        while (buffer[i_buffer]!=" "){
+            email[i_email]=buffer[i_buffer];
+            i_buffer++;
+            i_email++;        
+        }
+        i_buffer++;//on est sur l'espace, il faut passer au carac suivant sinon on ne rentrera pas dans le deuxième while
+        list=add_recipient_to_list(email,list);
+
+        //vider email
+        for(int i=0; i<strlen(email);i++){
+            email[i]="";
+        }
     }
 
-    // 2. Go through buffer and extract e-mails
-    // 3. Add each e-mail to list
-    // 4. Return list
     return list;
 }
 
