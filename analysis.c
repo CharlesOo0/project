@@ -67,11 +67,9 @@ int main()
 void parse_dir(char *path, FILE *output_file)
 {
     // 1. Check parameters
-    // directory_exists(path);
-
-    if (output_file == NULL || !path)
+    if (output_file == NULL || !directory_exists(path))
     {
-        printf("Erreur");
+        printf("Erreur\n");
     }
     else
     {
@@ -85,6 +83,9 @@ void parse_dir(char *path, FILE *output_file)
             {
                 fprintf(output_file, "%s\n", entity->d_name);
                 entity = readdir(dir);
+                if(directory_exists(path)){
+                    parse_dir(entity,output_file);
+                }
             }
         }
         closedir(dir);
